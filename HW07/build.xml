@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="HW7">
+	<property environment="env" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.8" />
+	<property name="source" value="1.8" />
+	<path id="HW7.classpath">
+		<pathelement location="bin" />
+	</path>
+	<target name="init">
+		<echo>This is CS681 - HW7 Homework</echo>
+		<echo>Name: Punit Rajendra Patel</echo>
+		<echo>Student ID: 01603970</echo>
+		<mkdir dir="bin" />
+		<copy includeemptydirs="false" todir="bin">
+			<fileset dir="src">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="clean">
+		<delete dir="bin" />
+	</target>
+
+	<target depends="compile,run" name="build" />
+	<target depends="init" name="compile">
+		<echo message="${ant.project.name}: ${ant.file}" />
+
+		<mkdir dir="bin" />
+		<echo>Compiling all the java classes which inside the HW7 - CS681 Homework</echo>
+		<javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+			<src path="src" />
+			<classpath refid="HW7.classpath" />
+		</javac>
+	</target>
+	<target name="run" depends="init">
+		<echo>HW7 - CS681 : Main method output</echo>
+		<java classname="edu.umb.cs.cs681.HelloWorldTest2" failonerror="true" fork="yes">
+			<classpath refid="HW7.classpath" />
+		</java>
+	</target>
+</project>
